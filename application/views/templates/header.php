@@ -10,6 +10,8 @@
 				<li><a href="#">Calendar</a></li>
 				<li><a href="#">Profile</a></li>
 				<li><a href="#">Search</a></li>
+				<li><a href="<?php echo base_url('user/register');?>">Register</a></li>
+				
 			</ul>
 		</nav>
 		<h1><?php echo $title; ?></h1>

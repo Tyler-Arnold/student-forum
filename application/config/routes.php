@@ -53,3 +53,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //custom routing rules
 $route['(:any)'] = 'feed/index';
 $route['default_controller'] = 'feed/index';
+$route['User/register'] = 'User/register';
