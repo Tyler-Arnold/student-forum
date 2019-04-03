@@ -64,7 +64,6 @@ class Calendar_model extends CI_Model {
                     ->where("status", "accepted")
                     ->get();
         $count = count($query->result());
-        var_dump($count);
 
         if($count>3) {
             return "fully-booked";
