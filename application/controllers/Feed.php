@@ -8,7 +8,7 @@ class Feed extends CI_Controller {
 
     public function index() {
         $data['messages'] = $this->feed_model->get_messages();
-        $data['calendar'] = $this->calendar_model->get_calendar(date('n'));
+        $data['calendar'] = $this->calendar_model->get_calendar(4);
 
         $data['title'] = "Your Feed"; // page title
         $data['today'] = date('d');

@@ -8,10 +8,13 @@ class Calendar_model extends CI_Model {
         $days_in_month =  cal_days_in_month( CAL_GREGORIAN , $month , date('Y') );
         $days_in_prev_month = $this->get_days_in_previous_month($month);
 
-        $timestamp = strtotime("first monday 2019-$month");
-        $first_monday = date('D', $timestamp); // determine which day the month started on
+        // There's a weird bug with the strtotime function.
+        // When asked to retrieve the first monday of April 2019, it returns 8 instead of 1.
+        $timestamp = strtotime("first monday 2019-$month"); // this is weirdly broken
+        $first_monday = date('j', $timestamp); // determine the date of the first monday of the month
 
-        if($first_monday==1) {
+        // weird bug with strtotime function means that the first monday is ignored if the month starts on a monday.
+        if($first_monday==8) { // as such, this statement checks if the first monday is on the 8th, not the 1st.
             $days_of_prev_month = 0;
         } else {
             $days_of_prev_month = 8 - $first_monday; // determine how many days of the previous month to show
@@ -24,8 +27,9 @@ class Calendar_model extends CI_Model {
             array_push($calendar, array("day" => $day, "status" => "out-of-month"));
         }
 
-        for($i=1; $i<=$days_in_month; $i++) {
+        for($i=1; $i<=$days_in_month; $i++) { // loop through all days for this month
             $day = $i;
+            $status = $this->get_status($day, $month, $user);
             array_push($calendar, array("day" => $day, "status" => "none"));
         }
 
@@ -46,5 +50,9 @@ class Calendar_model extends CI_Model {
             $month = $cur_month - 1;
         }
         return cal_days_in_month( CAL_GREGORIAN , $month , date('Y') );
+    }
+
+    private function get_status($day, $month, $user) {
+
     }
 }
