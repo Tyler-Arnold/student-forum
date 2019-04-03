@@ -8,25 +8,46 @@ class Feed_model extends CI_Model {
 	public function get_messages($user = '1') {  // gets news out of database
         //$query = $this->db->get_where('forum_messages', array('recipient' => $user));
 
-		$query = $this->db->select("me.id, me.sender, me.recipient, me.message_body, us.id, us.username")
+		// this query might break when there's more than one recipient per message
+		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
 		          ->from("forum_messages as me")
+				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
-				  ->where("me.recipient", $user)
+				  ->where("link.user_id", $user)
+				  ->order_by('timestamp', 'DESC')
 				  ->get();
         return $query->result_array();
 	}
 
-	// TODO rewrite this whole section
-	// public function set_message() { // puts data into database
-	// 	$this->load->helper('url');
-	// 	$slug = url_title($this->input->post('title'), 'dash', TRUE);
-	//
-	// 	$data = array(
-	// 		'title' => $this->input->post('title'),
-	// 		'slug' => $slug,
-	// 		'text' => $this->input->post('text')
-	// 	);
-	//
-	// 	return $this->db->insert('news', $data);
-	// }
+	//TODO rewrite this whole section
+	public function send_message() { // puts data into database
+		$this->load->helper('url');
+	
+		$data = array(
+			'sender' => '1',
+			'recipient' => '69',
+			'message_body' => $this->input->post('message')
+		);
+	
+		$recipients = $this->input->post('recipient');
+		$recipients = explode(",", $recipients);
+	
+		$this->db->insert('forum_messages', $data);
+		$message_id = $this->db->insert_id();
+		
+		return $this->add_message_recipients($message_id, $recipients);
+	}
+	
+	private function add_message_recipients($message_id, $recipients) {
+		foreach($recipients as $recipient) {
+			$data = array (
+				'user_id' => $recipient,
+				'message_id' => $message_id
+			);
+			
+			$this->db->insert('forum_user_messages_link', $data);
+		}
+		
+		return true;
+	}
 }
