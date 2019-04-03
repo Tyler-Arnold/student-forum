@@ -24,12 +24,12 @@
 			$this->db->select(*);
 			$this->db->from('forum_users'$name);
 			$this->db->where('username',$pass);
-			$query=$this->db->get()
+			$query=$this->db->get();
 			
 			if($query->num_rows()>0){
-				return false
+				return false;
 			} else {
-				return true;
+				return $query->result_array();
 			}
 			
 		}
