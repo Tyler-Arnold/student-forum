@@ -69,14 +69,13 @@
 					$this->load->view('templates/footer'); 
 					
 				}
-			} 
-			
-			
-			
-			
-			
-			
-			
+			} 	
+		}
+		
+		public function logout(){
+		
+			$this->session->sess_destroy();
+			redirect('user/login','refresh');
 		}
 		
 	}

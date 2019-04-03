@@ -3,10 +3,12 @@ class Feed extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('feed_model'); // load our custom model
+		$this->load->library('session'); 
     }
 
     public function index() {
         $data['messages'] = $this->feed_model->get_messages();
+		
         $data['title'] = "Your Feed"; // Capitalize the first letter
 		
 		$this->load->helper('form'); // form helper functions, used in the create view

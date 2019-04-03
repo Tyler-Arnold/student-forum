@@ -2,10 +2,11 @@
 class Feed_model extends CI_Model {
 	public function __construct() {
         $this->load->database();
+		$this->load->library('session'); 
 	}
 
 	// DO NOT LEAVE THE DEFAULT USER IN THE FINAL SUBMISSION OR I'LL GIVE YOU A ZERO
-	public function get_messages($user = '1') {  // gets news out of database
+	public function get_messages() {  // gets news out of database
         //$query = $this->db->get_where('forum_messages', array('recipient' => $user));
 
 		// this query might break when there's more than one recipient per message
@@ -13,7 +14,7 @@ class Feed_model extends CI_Model {
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
-				  ->where("link.user_id", $user)
+				  ->where("link.user_id", $this->session->userdata('id'))
 				  ->order_by('timestamp', 'DESC')
 				  ->get();
         return $query->result_array();
@@ -24,7 +25,7 @@ class Feed_model extends CI_Model {
 		$this->load->helper('url');
 	
 		$data = array(
-			'sender' => '1',
+			'sender' => $this->session->userdata('id'),
 			'recipient' => '69',
 			'message_body' => $this->input->post('message')
 		);
