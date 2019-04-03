@@ -22,20 +22,23 @@ class Calendar_model extends CI_Model {
 
         $calendar = array();
 
-        for($i=0; $i<$days_of_prev_month;$i++){ // add days from previous month
+        // add days from previous month
+        for($i=0; $i<$days_of_prev_month;$i++){
             $day = $i + ($days_in_prev_month - ($days_of_prev_month-1)); // determine "current day" of previous month
             array_push($calendar, array("day" => $day, "status" => "out-of-month"));
         }
 
-        for($i=1; $i<=$days_in_month; $i++) { // loop through all days for this month
+        // loop through all days for this month
+        for($i=1; $i<=$days_in_month; $i++) {
             $day = $i;
             $status = $this->get_status($day, $month, $user);
-            array_push($calendar, array("day" => $day, "status" => "none"));
+            array_push($calendar, array("day" => $day, "status" => $status));
         }
 
         //determine how many more days need to be added to the calendar to reach the right length
         $days_left = 42 - sizeof($calendar);
 
+        // add trailing days
         for($i=1; $i<=$days_left; $i++) {
             $day = $i;
             array_push($calendar, array("day" => $day, "status" => "out-of-month"));
@@ -53,6 +56,22 @@ class Calendar_model extends CI_Model {
     }
 
     private function get_status($day, $month, $user) {
+        $date = date("Y-m-d", strtotime("2019-$month-$day"));
+        $query = $this->db->select("sender, recipient, date_time, status")
+                    ->from("forum_appointments")
+                    ->where("DATE(date_time)", $date)
+                    ->where("recipient", $user)
+                    ->where("status", "accepted")
+                    ->get();
+        $count = count($query->result());
+        var_dump($count);
 
+        if($count>3) {
+            return "fully-booked";
+        } elseif($count>=1) {
+            return "part-booked";
+        } else {
+            return "available";
+        }
     }
 }
