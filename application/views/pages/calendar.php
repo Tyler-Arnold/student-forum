@@ -14,15 +14,26 @@
         <?php
             if($cal_start == 1):
                 $day = 0;
+                $next_month_flag = false;
                 for($i=1; $i<=6; $i++):
         ?>
         <tr> <!-- Start of row -->
 
         <?php
+                    // only runs if month begins with Monday
                     for($x=1; $x<=7; $x++):
                         $day++;
-                        if($day>$month_end) { $day = 1; }
-                        echo "<td class=\"\"><a href=\"#\">$day</a></td>";
+                        if($day > $month_end) { // if month is over
+                            $day = 1;
+                            $next_month_flag = true;
+                        }
+
+                        if($next_month_flag) { $class="out-of-month"; }
+                        elseif($day == $today) { $class="today"; }
+                        elseif($x>=6) { $class="unavailable"; }
+                        else { $class=""; }
+
+                        echo "<td class=\"$class\"><a href=\"#\">$day</a></td>";
                     endfor;
         ?>
 
