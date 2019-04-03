@@ -1,4 +1,3 @@
-<h2><?php echo $title; ?><h2>
 	
 <?php echo validation_errors(); ?>
 
@@ -13,10 +12,11 @@
 		<option value="Student">Student</option>
 		<option value="Lecturer">Lecturer</option>
 	</select>
-	<input type="submit" name="submit" value=" Create news user" />
+	<input type="submit" name="submit" value="Register" />
 	
-	</form>
+	</form> 
 	
-	<h2><?php echo $title; ?></h2> 
+	
+	
 	
 <?php echo validation_errors(); ?> 

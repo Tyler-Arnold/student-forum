@@ -9,10 +9,10 @@
 		}
 		
 		public function index(){
-			$data['title'] = "Register";
+			$data['title'] = "Login";
 			
 			$this->load->view('templates/header',$data);
-			$this->load->view('user/register',$data);
+			$this->load->view('user/login');
 			$this->load->view('templates/footer');
 		}
 		
@@ -39,31 +39,40 @@
 		}
 		
 		public function loginview(){
-			$data['title'] = "login";
+			$data['title'] = "Login";
 			$this->load->view('templates/header',$data); 
 			$this->load->view('user/login'); 
 			$this->load->view('templates/footer'); 
 		}
 		
 		public function login(){
-			$data['title'] = "login";
+			$data['title'] = "Login";
 			$this->load->helper('form'); 
 			$this->load->library('form_validation');
 			
 			$this->form_validation->set_rules('logname', 'Username', 'required'); 
 			$this->form_validation->set_rules('logpass', 'Password', 'required');
 			
-			$data['user'] = $this->user_model->login_user();
-			
-			if($data){
-				$this->session->set_userdata('id',$data['user'][0]['id']);
-				$this->session->set_userdata('username',$data['user'][0]['username']);
-			} else{
-				$this->session->set_flashdata('error_msg','Error');
+			if ($this->form_validation->run() === FALSE) { 
 				$this->load->view('templates/header',$data); 
 				$this->load->view('user/login'); 
-				$this->load->view('templates/footer'); 
-			}
+				$this->load->view('templates/footer');
+				$this->session->set_flashdata('error_msg','Login Failed'); 
+			} else { 
+				if($this->user_model->login_user()==false){
+					$this->load->view('templates/header',$data); 
+					$this->load->view('user/login'); 
+					$this->load->view('templates/footer'); 
+				} else{
+					$this->load->view('templates/header',$data); 
+					$this->load->view('user/logsucc'); 
+					$this->load->view('templates/footer'); 
+					
+				}
+			} 
+			
+			
+			
 			
 			
 			
