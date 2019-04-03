@@ -51,7 +51,7 @@ INSERT INTO `s5005478`.`forum_messages`
 VALUES
 (null,
 4,
-1,
+69,
 "Different test message!");
 
 INSERT INTO `s5005478`.`forum_messages`
@@ -62,7 +62,7 @@ INSERT INTO `s5005478`.`forum_messages`
 VALUES
 (null,
 3,
-1,
+69,
 "I'm the best programmer in the world!");
 
 INSERT INTO `s5005478`.`forum_messages`
@@ -73,7 +73,7 @@ INSERT INTO `s5005478`.`forum_messages`
 VALUES
 (null,
 2,
-1,
+69,
 "Nobody is better at programming than me!");
 
 INSERT INTO `s5005478`.`forum_messages`
@@ -84,5 +84,50 @@ INSERT INTO `s5005478`.`forum_messages`
 VALUES
 (null,
 1,
-1,
+69,
 "You shouldn't be able to send messages to yourself");
+
+INSERT INTO `s5005478`.`forum_user_messages_link`
+(`id`,
+`user_id`,
+`message_id`)
+VALUES
+(null,
+1,
+1);
+
+INSERT INTO `s5005478`.`forum_user_messages_link`
+(`id`,
+`user_id`,
+`message_id`)
+VALUES
+(null,
+1,
+2);
+
+INSERT INTO `s5005478`.`forum_user_messages_link`
+(`id`,
+`user_id`,
+`message_id`)
+VALUES
+(null,
+1,
+3);
+
+INSERT INTO `s5005478`.`forum_user_messages_link`
+(`id`,
+`user_id`,
+`message_id`)
+VALUES
+(null,
+1,
+4);
+
+INSERT INTO `s5005478`.`forum_user_messages_link`
+(`id`,
+`user_id`,
+`message_id`)
+VALUES
+(null,
+2,
+4);
