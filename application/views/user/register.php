@@ -1,8 +1,11 @@
 	
 <?php echo validation_errors(); ?>
+<?php echo $errormsg; ?>
+
 
 <?php echo form_open('user/register'); ?>
-
+	
+	
 	<label for = "username">Enter Username</label>
 	<input type="input" name="username" /><br />
 	<label for = "password">Enter Password</label>
@@ -19,4 +22,3 @@
 	
 	
 	
-<?php echo validation_errors(); ?> 

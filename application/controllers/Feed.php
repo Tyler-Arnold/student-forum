@@ -7,7 +7,10 @@ class Feed extends CI_Controller {
     }
 
     public function index() {
-        $data['messages'] = $this->feed_model->get_messages();
+        $userid=$this->session->userdata('id');
+		
+		if(isset($userid)){
+		$data['messages'] = $this->feed_model->get_messages();
 		
         $data['title'] = "Your Feed"; // Capitalize the first letter
 		
@@ -35,6 +38,9 @@ class Feed extends CI_Controller {
 		
         $this->load->view('pages/feed', $data); //load feed
 		$this->load->view('templates/footer', $data); //load footer
+		} else {
+			redirect('user/login','refresh');
+		}
 
     }
 
