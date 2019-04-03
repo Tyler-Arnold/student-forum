@@ -10,59 +10,26 @@
             <th>Sat</th>
             <th>Sun</th>
         </tr>
-        <tr>
-            <td class="unavailable"><a href="#">1</a></td>
-            <td class="unavailable"><a href="#">2</a></td>
-            <td class="today"><a href="#">3</a></td>
-            <td class="fully-booked"><a href="#">4</a></td>
-            <td class="fully-booked"><a href="#">5</a></td>
-            <td class="unavailable"><a href="#">6</a></td>
-            <td class="unavailable"><a href="#">7</a></td>
-        </tr>
-        <tr>
-            <td class=""><a href="#">8</a></td>
-            <td class="part-booked"><a href="#">9</a></td>
-            <td class=""><a href="#">10</a></td>
-            <td class="part-booked"><a href="#">11</a></td>
-            <td class=""><a href="#">12</a></td>
-            <td class="unavailable"><a href="#">13</a></td>
-            <td class="unavailable"><a href="#">14</a></td>
-        </tr>
-        <tr>
-            <td class=""><a href="#">15</a></td>
-            <td class=""><a href="#">16</a></td>
-            <td class=""><a href="#">17</a></td>
-            <td class="part-booked"><a href="#">18</a></td>
-            <td class=""><a href="#">19</a></td>
-            <td class="unavailable"><a href="#">20</a></td>
-            <td class="unavailable"><a href="#">21</a></td>
-        </tr>
-        <tr>
-            <td class=""><a href="#">22</a></td>
-            <td class=""><a href="#">23</a></td>
-            <td class=""><a href="#">24</a></td>
-            <td class=""><a href="#">25</a></td>
-            <td class=""><a href="#">26</a></td>
-            <td class="unavailable"><a href="#">27</a></td>
-            <td class="unavailable"><a href="#">28</a></td>
-        </tr>
-        <tr>
-            <td class=""><a href="#">29</a></td>
-            <td class=""><a href="#">30</a></td>
-            <td class="out-of-month"><a href="#">1</a></td>
-            <td class="out-of-month"><a href="#">2</a></td>
-            <td class="out-of-month"><a href="#">3</a></td>
-            <td class="out-of-month"><a href="#">4</a></td>
-            <td class="out-of-month"><a href="#">5</a></td>
-        </tr>
-        <tr>
-            <td class="out-of-month"><a href="#">6</a></td>
-            <td class="out-of-month"><a href="#">7</a></td>
-            <td class="out-of-month"><a href="#">8</a></td>
-            <td class="out-of-month"><a href="#">9</a></td>
-            <td class="out-of-month"><a href="#">10</a></td>
-            <td class="out-of-month"><a href="#">11</a></td>
-            <td class="out-of-month"><a href="#">12</a></td>
-        </tr>
+
+        <?php
+            if($cal_start == 1):
+                $day = 0;
+                for($i=1; $i<=6; $i++):
+        ?>
+        <tr> <!-- Start of row -->
+
+        <?php
+                    for($x=1; $x<=7; $x++):
+                        $day++;
+                        if($day>$month_end) { $day = 1; }
+                        echo "<td class=\"\"><a href=\"#\">$day</a></td>";
+                    endfor;
+        ?>
+
+        </tr> <!-- End of row -->
+        <?php
+                endfor;
+            endif;
+        ?>
     </table>
 </div>
