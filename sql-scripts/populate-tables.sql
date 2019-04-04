@@ -1,4 +1,4 @@
-INSERT INTO `s5005478`.`forum_users`
+INSERT INTO `s5063037`.`forum_users`
 (`id`,
 `username`,
 `password`)
@@ -7,7 +7,7 @@ VALUES
 "Jeff Puddlesby-Sponk",
 "password1");
 
-INSERT INTO `s5005478`.`forum_users`
+INSERT INTO `s5063037`.`forum_users`
 (`id`,
 `username`,
 `password`)
@@ -16,7 +16,7 @@ VALUES
 "Hugh Hughson",
 "password2");
 
-INSERT INTO `s5005478`.`forum_users`
+INSERT INTO `s5063037`.`forum_users`
 (`id`,
 `username`,
 `password`)
@@ -25,7 +25,7 @@ VALUES
 "Tobar",
 "password3");
 
-INSERT INTO `s5005478`.`forum_users`
+INSERT INTO `s5063037`.`forum_users`
 (`id`,
 `username`,
 `password`)
@@ -34,7 +34,7 @@ VALUES
 "Ograth the Mighty",
 "password");
 
-INSERT INTO `s5005478`.`forum_users`
+INSERT INTO `s5063037`.`forum_users`
 (`id`,
 `username`,
 `password`)
@@ -43,7 +43,7 @@ VALUES
 "Doombringer",
 "password5");
 
-INSERT INTO `s5005478`.`forum_messages`
+INSERT INTO `s5063037`.`forum_messages`
 (`id`,
 `sender`,
 `recipient`,
@@ -54,7 +54,7 @@ VALUES
 69,
 "Different test message!");
 
-INSERT INTO `s5005478`.`forum_messages`
+INSERT INTO `s5063037`.`forum_messages`
 (`id`,
 `sender`,
 `recipient`,
@@ -65,7 +65,7 @@ VALUES
 69,
 "I'm the best programmer in the world!");
 
-INSERT INTO `s5005478`.`forum_messages`
+INSERT INTO `s5063037`.`forum_messages`
 (`id`,
 `sender`,
 `recipient`,
@@ -76,7 +76,7 @@ VALUES
 69,
 "Nobody is better at programming than me!");
 
-INSERT INTO `s5005478`.`forum_messages`
+INSERT INTO `s5063037`.`forum_messages`
 (`id`,
 `sender`,
 `recipient`,
@@ -87,7 +87,7 @@ VALUES
 69,
 "You shouldn't be able to send messages to yourself");
 
-INSERT INTO `s5005478`.`forum_user_messages_link`
+INSERT INTO `s5063037`.`forum_user_messages_link`
 (`id`,
 `user_id`,
 `message_id`)
@@ -96,7 +96,7 @@ VALUES
 1,
 1);
 
-INSERT INTO `s5005478`.`forum_user_messages_link`
+INSERT INTO `s5063037`.`forum_user_messages_link`
 (`id`,
 `user_id`,
 `message_id`)
@@ -105,7 +105,7 @@ VALUES
 1,
 2);
 
-INSERT INTO `s5005478`.`forum_user_messages_link`
+INSERT INTO `s5063037`.`forum_user_messages_link`
 (`id`,
 `user_id`,
 `message_id`)
@@ -114,7 +114,7 @@ VALUES
 1,
 3);
 
-INSERT INTO `s5005478`.`forum_user_messages_link`
+INSERT INTO `s5063037`.`forum_user_messages_link`
 (`id`,
 `user_id`,
 `message_id`)
@@ -123,7 +123,7 @@ VALUES
 1,
 4);
 
-INSERT INTO `s5005478`.`forum_user_messages_link`
+INSERT INTO `s5063037`.`forum_user_messages_link`
 (`id`,
 `user_id`,
 `message_id`)

@@ -10,6 +10,7 @@
 		
 		public function index(){
 			$data['title'] = "Login";
+            $data['user'] = 0;
 			
 			$this->load->view('templates/header',$data);
 			$this->load->view('user/login');
@@ -18,6 +19,7 @@
 		
 		public function register(){
 			$data['title'] = "Register";
+            $data['user'] = 0;
 			$data['errormsg']='';
 			$this->load->helper('form'); 
 			$this->load->library('form_validation');
@@ -51,6 +53,7 @@
 		
 		public function loginview(){
 			$data['title'] = "Login";
+            $data['user'] = 0;
 			$data['errormsg']='';
 			$this->load->view('templates/header',$data); 
 			$this->load->view('user/login'); 
