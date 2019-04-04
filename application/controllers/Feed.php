@@ -8,16 +8,17 @@ class Feed extends CI_Controller {
     }
 
     public function index() {
-		    $userid=$this->session->userdata('id');
-		
+		$userid=$this->session->userdata('id');
+
         $data['messages'] = $this->feed_model->get_messages();
         $data['calendar'] = $this->calendar_model->get_calendar(4, 1);
 
         $data['title'] = "Your Feed"; // page title
-        
-		
+
+
         if(isset($userid)){
             $data['messages'] = $this->feed_model->get_messages();
+            $data['user'] = $userid;
             $data['title'] = "Your Feed"; // Capitalize the first letter
             $this->load->helper('form'); // form helper functions, used in the create view
             $this->load->library('form_validation'); // load form validation library
