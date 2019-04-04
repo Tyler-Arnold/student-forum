@@ -74,7 +74,7 @@ class Calendar_model extends CI_Model {
             return "available";
         }
     }
-	
+
 	public function get_appointments($date, $user = 1) {
 		$date = date("Y-m-d", strtotime($date));
         $query = $this->db->select("sender, recipient, date_time, location, status")
@@ -83,7 +83,19 @@ class Calendar_model extends CI_Model {
                     ->where("recipient", $user)
                     ->where("status", "accepted")
                     ->get();
-					
+
+		return $query->result_array();
+	}
+
+	public function set_appointment() {
+		$date = date("Y-m-d", strtotime($date));
+        $query = $this->db->select("sender, recipient, date_time, location, status")
+                    ->from("forum_appointments")
+                    ->where("DATE(date_time)", $date)
+                    ->where("recipient", $user)
+                    ->where("status", "accepted")
+                    ->get();
+
 		return $query->result_array();
 	}
 }
