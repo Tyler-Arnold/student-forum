@@ -2,13 +2,13 @@
 class Feed extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('feed_model'); // load feed model
+        $this->load->model('feed_model'); // load our custom model
         $this->load->model('calendar_model'); // load our custom model
-        $this->load->library('session'); 
+        $this->load->library('session');
     }
 
     public function index() {
-		$userid=$this->session->userdata('id');
+		    $userid=$this->session->userdata('id');
 		
         $data['messages'] = $this->feed_model->get_messages();
         $data['calendar'] = $this->calendar_model->get_calendar(4, 1);
@@ -43,5 +43,4 @@ class Feed extends CI_Controller {
           }
 
       }
-
 }

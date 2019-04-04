@@ -1,5 +1,5 @@
 <?php echo validation_errors(); ?>
-<?php echo form_open(); ?>
+<?php echo form_open('pages/message-box'); ?>
     <label for="recipient">Recipient</label>
     <input type="input" name="recipient" /><br />
     <label for="message">Message</label>
