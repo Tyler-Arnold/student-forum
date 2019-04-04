@@ -1,0 +1,9 @@
+.item1{grid-area: msgs;}
+.item1{grid-area: sent;}
+.item3{grid-area: users;}
+
+.tablesbs{
+	display:grid;
+	grid-template-areas:'msgs sent users';
+	grid-gap: 20px;
+}

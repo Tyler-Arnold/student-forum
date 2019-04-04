@@ -63,6 +63,7 @@ $route['default_controller'] = 'feed/index';
 
 $route['user'] = 'templates/header';
 $route['User/login'] = 'User/login';
+$route['Search/input'] = 'Search/input';
 
 
 
