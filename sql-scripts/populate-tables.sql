@@ -131,3 +131,20 @@ VALUES
 (null,
 2,
 4);
+
+
+INSERT INTO `s5005478`.`forum_appointments`
+(`id`,
+`sender`,
+`recipient`,
+`date_time`,
+`location`,
+`status`)
+VALUES
+('5', '5', '1', '2019-04-05 00:00:00', 'somewhere', 'accepted'),
+('2', '3', '1', '2019-04-05 00:00:00', 'somewhere', 'accepted'),
+('3', '5', '1', '2019-04-05 00:00:00', 'somewhere', 'accepted'),
+('4', '5', '1', '2019-04-07 00:00:00', 'somewhere', 'accepted'),
+('6', '5', '1', '2019-04-05 00:00:00', NULL, 'accepted'),
+('7', '7', '1', '2019-04-04 00:00:00', NULL, 'accepted'),
+('8', '6', '1', '2019-04-12 00:00:00', NULL, 'accepted');
