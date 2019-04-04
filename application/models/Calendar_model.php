@@ -88,14 +88,16 @@ class Calendar_model extends CI_Model {
 	}
 
 	public function set_appointment() {
-		$date = date("Y-m-d", strtotime($date));
-        $query = $this->db->select("sender, recipient, date_time, location, status")
-                    ->from("forum_appointments")
-                    ->where("DATE(date_time)", $date)
-                    ->where("recipient", $user)
-                    ->where("status", "accepted")
-                    ->get();
+		$this->load->helper('url');
 
-		return $query->result_array();
+		$data = array(
+			'sender' => $this->session->userdata('id'),
+			'recipient' => $this->input->post('recipient'),
+			'date_time' => $this->input->post('date')." ".$this->input->post('time'),
+			'location' => $this->input->post('location'),
+			'status' => "pending"
+		);
+
+		$this->db->insert('forum_appointments', $data);
 	}
 }
