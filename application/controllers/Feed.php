@@ -8,12 +8,13 @@ class Feed extends CI_Controller {
     }
 
     public function index() {
+		$userid=$this->session->userdata('id');
+		
         $data['messages'] = $this->feed_model->get_messages();
-        $data['calendar'] = $this->calendar_model->get_calendar(4);
+        $data['calendar'] = $this->calendar_model->get_calendar(4, 1);
 
         $data['title'] = "Your Feed"; // page title
-        $data['title'] = "Your Feed"; // Title
-        $userid=$this->session->userdata('id');
+        
 		
         if(isset($userid)){
             $data['messages'] = $this->feed_model->get_messages();
@@ -35,7 +36,7 @@ class Feed extends CI_Controller {
               redirect($this->uri->uri_string());
             }
 
-                $this->load->view('pages/feed', $data); //load feed
+            $this->load->view('pages/feed', $data); //load feed
             $this->load->view('templates/footer', $data); //load footer
             } else {
               redirect('user/login','refresh');
