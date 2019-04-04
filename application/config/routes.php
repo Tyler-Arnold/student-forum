@@ -58,4 +58,5 @@ $route['pages/feed'] = 'feed/index';
 $route['(:any)'] = 'feed/index';
 $route['default_controller'] = 'feed/index';
 $route['User/login'] = 'User/login';
+$route['Search/input'] = 'Search/input';
 
