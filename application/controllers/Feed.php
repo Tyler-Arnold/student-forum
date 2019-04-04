@@ -16,7 +16,7 @@ class Feed extends CI_Controller {
             $data['title'] = "Your Feed"; // Capitalize the first letter
             $data['messages'] = $this->feed_model->get_messages();
             $date = date("Y-m"); //get current month and year, needed for calendar
-            $data['date'] = $date;
+            $data['date'] = $date; // Just a year and a month
             $data['calendar'] = $this->calendar_model->get_calendar($date, $userid);
 
             $this->load->helper('form'); // form helper functions, used in the create view

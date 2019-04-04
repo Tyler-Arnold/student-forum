@@ -6,35 +6,37 @@
 			$this->load->model('search_model');
 			$this->load->library('session');
 		}
-		
+
 		public function index(){
 			$data['title'] = "Search";
-			
+			$data['user'] =$userid=$this->session->userdata('id');
+
 			$this->load->view('templates/header',$data);
 			$this->load->view('search/input');
 			$this->load->view('templates/footer');
 		}
-	
+
 		public function input(){
 			$userid=$this->session->userdata('id');
 			if(isset($userid)){
+				$data['user'] =$userid=$this->session->userdata('id');
 				$data['title'] = "Search";
 				$data['errormsgs']='';
 				$data['errorsent']='';
 				$data['errorusers']='';
-				$this->load->helper('form'); 
+				$this->load->helper('form');
 				$this->load->library('form_validation');
-				
-				
-				$this->form_validation->set_rules('entersearch', 'Search', 'required');  
-				
-				
-				if ($this->form_validation->run() === FALSE) { 
+
+
+				$this->form_validation->set_rules('entersearch', 'Search', 'required');
+
+
+				if ($this->form_validation->run() === FALSE) {
 				// Search failed, missing field
-					$this->load->view('templates/header',$data); 
+					$this->load->view('templates/header',$data);
 					$this->load->view('search/input');
-					$this->load->view('templates/footer'); 
-				} else { 
+					$this->load->view('templates/footer');
+				} else {
 					$data['resultmsgs'] = $this->search_model->getsearchmsgs();
 					$data['resultusers'] = $this->search_model->getsearchusers();
 					$data['resultsent'] = $this->search_model->getsearchsent();
@@ -47,17 +49,17 @@
 					if(empty($data['resultusers'])){
 						$data['errorusers']='No results' ;
 					}
-		
+
 					$this->load->view('templates/header',$data);
 					$this->load->view('search/results',$data);
 					$this->load->view('templates/footer');
 				}
-			
+
 			} else{
 				redirect('user/login','refresh');
 			}
 		}
 	}
-		
-		
+
+
 ?>
