@@ -31,7 +31,8 @@ class Calendar_model extends CI_Model {
         // loop through all days for this month
         for($i=1; $i<=$days_in_month; $i++) {
             $day = $i;
-            $status = $this->get_status($day, $month, $user);
+			$date = date("Y-m-d", strtotime("2019-$month-$day"));
+            $status = $this->get_status($date, $user);
             array_push($calendar, array("day" => $day, "status" => $status));
         }
 
@@ -55,8 +56,8 @@ class Calendar_model extends CI_Model {
         return cal_days_in_month( CAL_GREGORIAN , $month , date('Y') );
     }
 
-    private function get_status($day, $month, $user) {
-        $date = date("Y-m-d", strtotime("2019-$month-$day"));
+    private function get_status($date, $user) {
+        $date = date("Y-m-d", strtotime($date));
         $query = $this->db->select("sender, recipient, date_time, status")
                     ->from("forum_appointments")
                     ->where("DATE(date_time)", $date)
@@ -73,4 +74,28 @@ class Calendar_model extends CI_Model {
             return "available";
         }
     }
+
+	public function get_appointments($date, $user = 1) {
+		$date = date("Y-m-d", strtotime($date));
+        $query = $this->db->select("sender, recipient, date_time, location, status")
+                    ->from("forum_appointments")
+                    ->where("DATE(date_time)", $date)
+                    ->where("recipient", $user)
+                    ->where("status", "accepted")
+                    ->get();
+
+		return $query->result_array();
+	}
+
+	public function set_appointment() {
+		$date = date("Y-m-d", strtotime($date));
+        $query = $this->db->select("sender, recipient, date_time, location, status")
+                    ->from("forum_appointments")
+                    ->where("DATE(date_time)", $date)
+                    ->where("recipient", $user)
+                    ->where("status", "accepted")
+                    ->get();
+
+		return $query->result_array();
+	}
 }
