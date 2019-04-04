@@ -51,12 +51,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //custom routing rules
+$route['profile/index'] = 'profile/index';
+$route['profile/profile_config'] = 'profile/profile_config';
+$route['profile/get_username'] = 'profile/get_username';
 
-$route['user'] = 'templates/header';
+// default routes
 $route['feed/index'] = 'feed/index';
 $route['pages/feed'] = 'feed/index';
 $route['(:any)'] = 'feed/index';
 $route['default_controller'] = 'feed/index';
+
+$route['user'] = 'templates/header';
 $route['User/login'] = 'User/login';
 $route['Search/input'] = 'Search/input';
+
+
 

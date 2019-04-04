@@ -2,21 +2,22 @@
 class Feed extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('feed_model'); // load feed model
+        $this->load->model('feed_model'); // load our custom model
         $this->load->model('calendar_model'); // load our custom model
-        $this->load->library('session'); 
+        $this->load->library('session');
     }
 
     public function index() {
-        $data['messages'] = $this->feed_model->get_messages();
-        $data['calendar'] = $this->calendar_model->get_calendar(4);
+		$userid=$this->session->userdata('id');
 
+        $data['messages'] = $this->feed_model->get_messages();
+        $data['calendar'] = $this->calendar_model->get_calendar(4, 1);
         $data['title'] = "Your Feed"; // page title
-        $data['title'] = "Your Feed"; // Title
-        $userid=$this->session->userdata('id');
-		
+
+
         if(isset($userid)){
             $data['messages'] = $this->feed_model->get_messages();
+            $data['user'] = $userid;
             $data['title'] = "Your Feed"; // Capitalize the first letter
             $this->load->helper('form'); // form helper functions, used in the create view
             $this->load->library('form_validation'); // load form validation library
@@ -35,12 +36,11 @@ class Feed extends CI_Controller {
               redirect($this->uri->uri_string());
             }
 
-                $this->load->view('pages/feed', $data); //load feed
+            $this->load->view('pages/feed', $data); //load feed
             $this->load->view('templates/footer', $data); //load footer
             } else {
               redirect('user/login','refresh');
           }
 
       }
-
 }
