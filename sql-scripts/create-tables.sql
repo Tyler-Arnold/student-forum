@@ -1,3 +1,24 @@
+CREATE TABLE `forum_appointments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` int(11) NOT NULL,
+  `recipient` int(11) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `foobar_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` text NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `email_address` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `forum_likes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message_id` int(11) NOT NULL,
@@ -14,7 +35,7 @@ CREATE TABLE `forum_messages` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `sender` (`sender`,`recipient`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `forum_profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -38,7 +59,7 @@ CREATE TABLE `forum_user_messages_link` (
   `user_id` int(11) NOT NULL,
   `message_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `forum_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -51,4 +72,4 @@ CREATE TABLE `forum_users` (
   `bio` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
