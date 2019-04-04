@@ -21,7 +21,8 @@
             for($x=1; $x<=7; $x++): // run for each day of the week
                 $class = $calendar[$iterator]["status"];
                 $day = $calendar[$iterator]["day"];
-                echo "<td class=\"$class\"><a href=\"#\">$day</a></td>";
+                $url = base_url("appointments/book/$current_user/$date-$day");
+                echo "<td class=\"$class\"><a href=\"$url\">$day</a></td>";
                 $iterator++;
             endfor;
         ?>

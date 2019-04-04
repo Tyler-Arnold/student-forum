@@ -4,7 +4,9 @@ class Calendar_model extends CI_Model {
         $this->load->database();
 	}
     // PLEASE DO NOT LEAVE THE DEFAULT USER IN THIS FUNCTION
-	public function get_calendar($month, $user = 1) {  // by default, month is current month
+	public function get_calendar($date, $user = 1) {  // by default, month is current month
+		$month = date("m",strtotime($date));
+		$year = date("Y",strtotime($date));
         $days_in_month =  cal_days_in_month( CAL_GREGORIAN , $month , date('Y') );
         $days_in_prev_month = $this->get_days_in_previous_month($month);
 

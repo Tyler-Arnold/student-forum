@@ -10,21 +10,20 @@ class Feed extends CI_Controller {
     public function index() {
 		$userid=$this->session->userdata('id');
 
-        $data['messages'] = $this->feed_model->get_messages();
-        $data['calendar'] = $this->calendar_model->get_calendar(4, 1);
-        $data['title'] = "Your Feed"; // page title
-
-
         if(isset($userid)){
-            $data['messages'] = $this->feed_model->get_messages();
-            $data['user'] = $userid;
+            $data['current_user'] = $userid;
             $data['title'] = "Your Feed"; // Capitalize the first letter
+            $data['messages'] = $this->feed_model->get_messages();
+            $date = date("Y-m"); //get current month and year, needed for calendar
+            $data['date'] = $date;
+            $data['calendar'] = $this->calendar_model->get_calendar($date, 1);
+
             $this->load->helper('form'); // form helper functions, used in the create view
             $this->load->library('form_validation'); // load form validation library
-
             $this->form_validation->set_rules('recipient', 'Recipient', 'required');
             $this->form_validation->set_rules('message', 'Message', 'required');
 
+            // PAGE LOADING
             $this->load->view('templates/header', $data); //load header
             $this->load->view('pages/calendar', $data); //load calendar
 
@@ -38,9 +37,9 @@ class Feed extends CI_Controller {
 
             $this->load->view('pages/feed', $data); //load feed
             $this->load->view('templates/footer', $data); //load footer
-            } else {
-              redirect('user/login','refresh');
-          }
+        } else {
+          redirect('user/login','refresh');
+        }
 
-      }
+    }
 }
