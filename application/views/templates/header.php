@@ -6,6 +6,7 @@
 	<head>
 		<title>Student Forum</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/default.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/calendar.css">
 	</head>
 	<body>
 		<nav class="main-nav">

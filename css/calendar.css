@@ -1,0 +1,63 @@
+* {
+    font-family: "Arial", sans-serif;
+}
+
+/* Calendar table styling */
+.calendar table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.calendar th, td {
+  padding: 5px;
+}
+
+.calendar td a:link {
+    color: #3f3f3f;
+    text-decoration: underline;
+}
+
+/* Styling out-of-month cells */
+.calendar td.out-of-month a:link {
+    color: #999999;
+    text-decoration: none;
+}
+
+/* Styling unavailable cells */
+.calendar td.unavailable {
+    background-color: #ba1c00;
+}
+
+.calendar td.unavailable a:link {
+    color: #bababa;
+    text-decoration: none;
+}
+
+/* Styling today cell */
+.calendar td.today {
+    background-color: #55b7e8;
+}
+
+/* Styling fully-booked cells */
+.calendar td.fully-booked {
+    background-color: #ba1c00;
+}
+
+.calendar td.fully-booked a:link {
+    color: #bababa;
+    text-decoration: none;
+}
+
+/* Styling part-booked cells */
+.calendar td.part-booked {
+    background-color: #d17900;
+}
+
+/* Styling cell hover */
+.calendar td:hover {
+    background-color: #d8e7ff;
+}
+
+.calendar td.out-of-month:hover {
+    background-color: #ffffff;
+}
