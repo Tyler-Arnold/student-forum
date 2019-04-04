@@ -11,12 +11,13 @@ class Feed extends CI_Controller {
 		$userid=$this->session->userdata('id');
 
         if(isset($userid)){
-            $data['current_user'] = $userid;
+            $data['user'] = $userid; // The current logged in user (They're the same on the feed)
+            $data['current_user'] = $userid; // The owner of the current page (They're the same on the feed)
             $data['title'] = "Your Feed"; // Capitalize the first letter
             $data['messages'] = $this->feed_model->get_messages();
             $date = date("Y-m"); //get current month and year, needed for calendar
             $data['date'] = $date;
-            $data['calendar'] = $this->calendar_model->get_calendar($date, 1);
+            $data['calendar'] = $this->calendar_model->get_calendar($date, $userid);
 
             $this->load->helper('form'); // form helper functions, used in the create view
             $this->load->library('form_validation'); // load form validation library
