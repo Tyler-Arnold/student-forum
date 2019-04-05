@@ -7,6 +7,9 @@ class Feed extends CI_Controller {
         $this->load->library('session');
     }
 
+    /*
+        The main feed page. 
+    */
     public function index() {
 		$userid=$this->session->userdata('id');
 

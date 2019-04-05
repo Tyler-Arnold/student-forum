@@ -22,7 +22,8 @@
 				<li><a href="<?php echo base_url('appointments/view');?>">Appointments</a></li>
 				<li><a href="<?php echo base_url('user/logout');?>">Logout</a></li>
 				<li><p style="color:white;">Logged in as <?php echo $username;?></p></li>
+			<?php } ?>
 			</ul>
 		</nav>
 	<div class="page-container">
-	<h1 class="title"><?php } echo $title; ?></h1>
+	<h1 class="title"><?php echo $title; ?></h1>
