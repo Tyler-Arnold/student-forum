@@ -79,11 +79,23 @@ class Calendar_model extends CI_Model {
 
 	public function get_appointments($date, $user = 1) {
 		$date = date("Y-m-d", strtotime($date));
-        $query = $this->db->select("sender, recipient, date_time, location, status")
-                    ->from("forum_appointments")
+        $query = $this->db->select("ap.sender, ap.recipient, ap.date_time, ap.location, ap.status, us.id, us.username")
+                    ->from("forum_appointments as ap")
+					->join("forum_users as us", "ap.sender=us.id")
                     ->where("DATE(date_time)", $date)
-                    ->where("recipient", $user)
-                    ->where("status", "accepted")
+                    ->where("ap.recipient", $user)
+                    ->where("ap.status", "accepted")
+                    ->get();
+
+		return $query->result_array();
+	}
+
+	public function get_all_appointments($user = 1) {
+        $query = $this->db->select("ap.id, ap.sender, ap.recipient, ap.date_time, ap.location, ap.status, us.username")
+                    ->from("forum_appointments as ap")
+					->join("forum_users as us", "ap.sender=us.id")
+                    ->where("recipient='$user' OR sender='$user'")
+					->order_by('ap.date_time', 'ASC')
                     ->get();
 
 		return $query->result_array();
@@ -101,5 +113,14 @@ class Calendar_model extends CI_Model {
 		);
 
 		$this->db->insert('forum_appointments', $data);
+	}
+
+	public function update_appointment($id, $status) {
+		$data = array(
+		        'status' => $status
+		);
+
+		$this->db->where('id', $id)
+				->update('forum_appointments', $data);
 	}
 }

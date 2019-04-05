@@ -35,9 +35,11 @@
 				// Search failed, missing field
 					$this->load->view('templates/header',$data);
 					$this->load->view('search/input');
+					$this->load->view('templates/footer'); 
+				} else { 
+				$data['user'] =$userid=$this->session->userdata('id');
+				$userid=$this->session->userdata('id');
 
-					$this->load->view('templates/footer');
-				} else {
 
 					$data['resultmsgs'] = $this->search_model->getsearchmsgs();
 					$data['resultusers'] = $this->search_model->getsearchusers();

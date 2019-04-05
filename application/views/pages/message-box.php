@@ -1,3 +1,4 @@
+<div class="message-box">
 <?php echo validation_errors(); ?>
 <?php echo form_open(); ?>
     <label for="recipient">Recipient</label>
@@ -6,3 +7,4 @@
     <textarea name="message"></textarea><br />
     <input type="submit" name="submit" value="Send Message" />
 </form>
+</div>

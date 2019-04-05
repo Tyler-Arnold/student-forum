@@ -4,7 +4,7 @@
 		<?php echo $errormsgs; ?>
 		<?php foreach ($resultmsgs as $resultmsg): ?>
 			<div class="feed-message">
-				<h3 class="sender"><?php echo $resultmsg['username']; ?></h3>
+				<h3 class="sender"><a href="<?php echo base_url("profile/index/".$resultmsg['sender']); ?>"><?php echo $resultmsg['username']; ?></a></h3>
 				<div class="message-body">
 					<p><?php echo $resultmsg['message_body']; ?></p>
 				</div>
@@ -22,7 +22,7 @@
 		<?php echo $errorsent; ?>
 		<?php foreach ($resultsent as $resultsent1): ?>
 			<div class="feed-message">
-				<h3 class="sender"><?php echo $resultsent1['username']; ?></h3>
+				<h3 class="sender"><a href="<?php echo base_url("profile/index/".$resultsent1['sender']); ?>"><?php echo $resultsent1['username']; ?></a></h3>
 				<div class="message-body">
 					<p><?php echo $resultsent1['message_body']; ?></p>
 				</div>

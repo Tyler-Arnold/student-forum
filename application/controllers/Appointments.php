@@ -6,8 +6,26 @@ class Appointments extends CI_Controller {
         $this->load->library('session');
     }
 
+    public function view() {
+        $data['title'] = "Your Appointments"; // page title
+        $userid=$this->session->userdata('id');
+
+        if(isset($userid)){
+            $data['user'] = $userid; // The current logged in user (They're the same on the feed)
+            $data['current_user'] = $userid; // The owner of the current page (They're the same on the feed)
+			$data['appointments'] = $this->calendar_model->get_all_appointments($userid);
+
+            $this->load->view('templates/header', $data); //load header
+			$this->load->view('pages/all-appointments', $data); //load appointments
+            $this->load->view('templates/footer', $data); //load footer
+
+        } else {
+              redirect('user/login','refresh');
+        }
+    }
+
     public function book($user=1, $date='2019-04-05') {
-        $data['title'] = "Your Feed"; // page title
+        $data['title'] = "Book an Appointment"; // page title
         $userid=$this->session->userdata('id');
 
         if(isset($userid)){
@@ -40,6 +58,17 @@ class Appointments extends CI_Controller {
               redirect('user/login','refresh');
         }
 
+    }
+
+    public function update($id, $status) {
+        $userid=$this->session->userdata('id');
+
+        if(isset($userid)){
+			$this->calendar_model->update_appointment($id, $status);
+            redirect('appointments/view','refresh');
+        } else {
+            redirect('user/login','refresh');
+        }
     }
 
 }
