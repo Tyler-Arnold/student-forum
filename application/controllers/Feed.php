@@ -7,6 +7,9 @@ class Feed extends CI_Controller {
         $this->load->library('session');
     }
 
+    /*
+        The main feed page. 
+    */
     public function index() {
 		$userid=$this->session->userdata('id');
 
@@ -26,6 +29,7 @@ class Feed extends CI_Controller {
 
             // PAGE LOADING
             $this->load->view('templates/header', $data); //load header
+            $this->load->view('pages/calendar', $data); //load calendar
 
             if ($this->form_validation->run() === FALSE) { // form failed validation
               $this->load->view('pages/message-box', $data); //load message box
@@ -34,7 +38,6 @@ class Feed extends CI_Controller {
               $this->feed_model->send_message(); // call function in model to put validated data into database
               redirect($this->uri->uri_string());
             }
-            $this->load->view('pages/calendar', $data); //load calendar
 
             $this->load->view('pages/feed', $data); //load feed
             $this->load->view('templates/footer', $data); //load footer

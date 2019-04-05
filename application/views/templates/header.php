@@ -25,7 +25,8 @@
 				<li><a href="<?php echo base_url('user/logout');?>">Logout</a></li>
 
 				<li><p style="color:white;">Logged in as <?php echo $username;?></p></li>
+			<?php } ?>
 			</ul>
 		</nav>
-	<div class="grid-container">
-	<h1 class="title"><?php } echo $title; ?></h1>
+	<div class="page-container">
+	<h1 class="title"><?php echo $title; ?></h1>

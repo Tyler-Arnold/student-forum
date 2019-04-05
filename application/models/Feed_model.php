@@ -2,12 +2,13 @@
 class Feed_model extends CI_Model {
 	public function __construct() {
         $this->load->database();
-		$this->load->library('session'); 
+		$this->load->library('session');
 	}
-	// DO NOT LEAVE THE DEFAULT USER IN THE FINAL SUBMISSION OR I'LL GIVE YOU A ZERO
 
-	public function get_messages() {  // gets news out of database
-
+	/*
+		This function gets all the messages for the current user.
+	*/
+	public function get_messages() {  // gets messages out of database
 		// this query might break when there's more than one recipient per message
 		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
@@ -19,25 +20,31 @@ class Feed_model extends CI_Model {
 
         return $query->result_array();
 	}
-	
+
+	/*
+		This function is used to send a message.
+	*/
 	public function send_message() { // puts data into database
 		$this->load->helper('url');
 
 		$data = array(
-			'sender' => $this->session->userdata('id'),
-			'recipient' => '69',
-			'message_body' => $this->input->post('message')
+			'sender' => $this->session->userdata('id'), // current session user id
+			'message_body' => $this->input->post('message') // message from the form
 		);
 
-		$recipients = $this->input->post('recipient');
-		$recipients = explode(",", $recipients);
+		$recipients = $this->input->post('recipient'); // recipients for the message
+		$recipients = explode(",", $recipients); // split the comma-delimited string into individual recipients
 
-		$this->db->insert('forum_messages', $data);
-		$message_id = $this->db->insert_id();
+		$this->db->insert('forum_messages', $data); // add the message to the message array
+		$message_id = $this->db->insert_id(); // get the message id
 
 		return $this->add_message_recipients($message_id, $recipients);
 	}
 
+	/*
+		This function adds the records to the link table,
+		linking recipients to a message.
+	*/
 	private function add_message_recipients($message_id, $recipients) {
 		foreach($recipients as $recipient) {
 			$data = array (
@@ -50,19 +57,19 @@ class Feed_model extends CI_Model {
 
 		return true;
 	}
-	
+
 	public function reply($messageid){
 		$data = array(
 			'sender' => $this->session->userdata('id'),
 			'message_id' => $messageid,
 			'message_body' => $this->input->post('reply')
 		);
-		
+
 		$this->db->insert('forum_replies',$data);
-	
-	
+
+
 	}
-	
+
 	public function get_thread($messageid){
 		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
 		          ->from("forum_messages as me")
@@ -72,11 +79,11 @@ class Feed_model extends CI_Model {
 				  ->get();
 
         return $query->row_array();
-	
+
 	}
-	
+
 	public function get_thread_replies($messageid){
-		
+
 		$query = $this->db->select("us.username,message_body,sender")
 		          ->from("forum_replies")
 				  ->join("forum_users as us","sender=us.id")
@@ -85,8 +92,8 @@ class Feed_model extends CI_Model {
 				  ->get();
 
         return $query->result_array();
-	
+
 	}
-	
-	
+
+
 }
