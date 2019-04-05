@@ -1,15 +1,15 @@
 <?php
 	class Search_model extends CI_model{
-	
+
 		public function __construct(){
 			$this->load->database();
-			$this->load->library('session'); 
+			$this->load->library('session');
 		}
-		
+
 		public function getsearchmsgs(){
 			$searchinput = $this->input->post('entersearch');
 			$userid=$this->session->userdata('id');
-			
+
 			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
@@ -18,15 +18,14 @@
 				  ->like('message_body',$searchinput)
 				  ->order_by('timestamp', 'DESC')
 				  ->get();
-				  
+
 			return $query->result_array();
-			
 		}
-		
+
 		public function getsearchsent(){
 			$searchinput = $this->input->post('entersearch');
 			$userid=$this->session->userdata('id');
-			
+
 			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
@@ -35,11 +34,11 @@
 				  ->like('message_body',$searchinput)
 				  ->order_by('timestamp', 'DESC')
 				  ->get();
-				  
+
 			return $query->result_array();
 		}
-		
-		
+
+
 		public function getsearchusers(){
 			$searchinput = $this->input->post('entersearch');
 			$this->db->select('*');
@@ -48,14 +47,5 @@
 			$query=$this->db->get();
 			return $query->result_array();
 		}
-	
-	
-	
-	
 	}
-	
-	
-	
-	
-	
 ?>

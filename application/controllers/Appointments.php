@@ -20,7 +20,7 @@ class Appointments extends CI_Controller {
             $this->load->view('templates/footer', $data); //load footer
 
         } else {
-              redirect('user/login','refresh');
+            redirect('user/login','refresh');
         }
     }
 
@@ -45,17 +45,17 @@ class Appointments extends CI_Controller {
 			$this->load->view('pages/appointments', $data); //load appointments
 
             if ($this->form_validation->run() === FALSE) { // form failed validation
-              $this->load->view('pages/book', $data); //load message box
+                $this->load->view('pages/book', $data); //load message box
             } else { // form validated successfully
-              $this->load->view('pages/book', $data); //load message box
-              $this->calendar_model->set_appointment(); // call function in model to put validated data into database
-              redirect($this->uri->uri_string());
+                $this->load->view('pages/book', $data); //load message box
+                $this->calendar_model->set_appointment(); // call function in model to put validated data into database
+                redirect($this->uri->uri_string());
             }
 
             $this->load->view('templates/footer', $data); //load footer
 
         } else {
-              redirect('user/login','refresh');
+            redirect('user/login','refresh');
         }
 
     }

@@ -35,15 +35,15 @@
 				// Search failed, missing field
 					$this->load->view('templates/header',$data);
 					$this->load->view('search/input');
-					$this->load->view('templates/footer'); 
-				} else { 
-				$data['user'] =$userid=$this->session->userdata('id');
-				$userid=$this->session->userdata('id');
-
+					$this->load->view('templates/footer');
+				} else {
+					$data['user'] =$userid=$this->session->userdata('id');
+					$userid=$this->session->userdata('id');
 
 					$data['resultmsgs'] = $this->search_model->getsearchmsgs();
 					$data['resultusers'] = $this->search_model->getsearchusers();
 					$data['resultsent'] = $this->search_model->getsearchsent();
+
 					if(empty($data['resultmsgs'])){
 						$data['errormsgs']='No results' ;
 					}
@@ -59,11 +59,9 @@
 					$this->load->view('templates/footer');
 				}
 
-			} else{
+			} else {
 				redirect('user/login','refresh');
 			}
 		}
 	}
-
-
 ?>

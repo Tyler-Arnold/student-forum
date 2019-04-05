@@ -31,8 +31,8 @@ class Feed_model extends CI_Model {
 			'sender' => $this->session->userdata('id'), // current session user id
 			'message_body' => $this->input->post('message') // message from the form
 		);
-		
-		
+
+
 
 		$recipients = $this->input->post('recipient'); // recipients for the message
 		$recipients = explode(",", $recipients); // split the comma-delimited string into individual recipients
@@ -42,9 +42,9 @@ class Feed_model extends CI_Model {
 			$this->db->where('username',$name);
 		}
 		$query=$this->db->get();
-					
+
 		if($query->num_rows()<=0){
-		
+
 			return false;
 		} else {
 			$this->db->insert('forum_messages', $data); // add the message to the message array
@@ -53,17 +53,17 @@ class Feed_model extends CI_Model {
 			return $this->add_message_recipients($message_id, $recipients);
 		}
 
-		
+
 	}
-	
+
 	private function translate($username){
 		$query=$this->db->select('id')
 				 ->from('forum_users')
 				 ->where('username',$username)
 				 ->get();
-				 
+
 				 return $query->row_array();
-	
+
 	}
 
 	/*
@@ -93,8 +93,6 @@ class Feed_model extends CI_Model {
 		);
 
 		$this->db->insert('forum_replies',$data);
-
-
 	}
 
 	public function get_thread($messageid){
@@ -106,7 +104,6 @@ class Feed_model extends CI_Model {
 				  ->get();
 
         return $query->row_array();
-
 	}
 
 	public function get_thread_replies($messageid){
@@ -119,8 +116,5 @@ class Feed_model extends CI_Model {
 				  ->get();
 
         return $query->result_array();
-
 	}
-
-
 }
