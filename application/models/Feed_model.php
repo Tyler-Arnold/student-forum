@@ -40,6 +40,16 @@ class Feed_model extends CI_Model {
 
 		return $this->add_message_recipients($message_id, $recipients);
 	}
+	
+	private function translate($username){
+		$query=$this->db->select('id')
+				 ->from('forum_users')
+				 ->where('username',$username)
+				 ->get();
+				 
+				 return $query->row_array();
+	
+	}
 
 	/*
 		This function adds the records to the link table,
@@ -47,8 +57,10 @@ class Feed_model extends CI_Model {
 	*/
 	private function add_message_recipients($message_id, $recipients) {
 		foreach($recipients as $recipient) {
+			$recipient=$this->translate($recipient);
+			var_dump($recipient);
 			$data = array (
-				'user_id' => $recipient,
+				'user_id' => $recipient['id'],
 				'message_id' => $message_id
 			);
 

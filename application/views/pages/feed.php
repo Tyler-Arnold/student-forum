@@ -8,7 +8,7 @@
 
         <div class="message-interaction">
             <a href="<?php echo base_url("feed/thread/".$message['id']);?>"><button>Reply</button></a>
-            <button>Like</button>
+           
         </div>
     </div>
 <?php endforeach; ?>

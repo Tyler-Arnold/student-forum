@@ -12,7 +12,9 @@
 			$user = array(
 				'username'=>$this->input->post('username'),
 				'password'=>md5($this->input->post('password')),
-				'status'=>$this->input->post('status') 
+				'status'=>$this->input->post('status'),
+				'profile_picture'=>'profile-pic.png',
+				'bio'=>'Im new to this board, Please talk to me'
 			);
 			$this->db->select('*');
 			$this->db->from('forum_users');
