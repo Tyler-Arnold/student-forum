@@ -39,7 +39,7 @@ class Feed extends CI_Controller {
             $this->load->view('pages/feed', $data); //load feed
             $this->load->view('templates/footer', $data); //load footer
         } else {
-          redirect('user/login','refresh');
+            redirect('user/login','refresh');
         }
 
     }
