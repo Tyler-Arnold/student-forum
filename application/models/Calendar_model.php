@@ -83,8 +83,8 @@ class Calendar_model extends CI_Model {
                     ->from("forum_appointments as ap")
 					->join("forum_users as us", "ap.sender=us.id")
                     ->where("DATE(date_time)", $date)
-                    ->where("recipient", $user)
-                    ->where("status", "accepted")
+                    ->where("ap.recipient", $user)
+                    ->where("ap.status", "accepted")
                     ->get();
 
 		return $query->result_array();
@@ -95,6 +95,7 @@ class Calendar_model extends CI_Model {
                     ->from("forum_appointments as ap")
 					->join("forum_users as us", "ap.sender=us.id")
                     ->where("recipient='$user' OR sender='$user'")
+					->order_by('ap.date_time', 'ASC')
                     ->get();
 
 		return $query->result_array();
