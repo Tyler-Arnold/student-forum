@@ -18,6 +18,10 @@ body {
 	padding-right: 5%;
 }
 
+img.profile-picture {
+	border-radius: 15px;
+}
+
 /* .grid-container {
 	grid-template-areas:
 		'title title title'
@@ -114,7 +118,3 @@ div.feed-message h3 a:active { color: #00171f; }
 
 .calendar { margin-bottom: 20px; }
 .message-box { margin-left: 5%; }
-
-.profile-picture {
-	border-radius: 15px;
-}
