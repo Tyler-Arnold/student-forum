@@ -31,7 +31,6 @@
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
-				  ->where("link.user_id", $this->session->userdata('id'))
 				  ->where("me.sender", $this->session->userdata('id'))
 				  ->like('message_body',$searchinput)
 				  ->order_by('timestamp', 'DESC')

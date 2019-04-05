@@ -17,6 +17,7 @@
 		}
 
 		public function input(){
+			$data['user'] =$userid=$this->session->userdata('id');
 			$userid=$this->session->userdata('id');
 			if(isset($userid)){
 				$data['user'] =$userid=$this->session->userdata('id');
@@ -35,8 +36,12 @@
 				// Search failed, missing field
 					$this->load->view('templates/header',$data);
 					$this->load->view('search/input');
-					$this->load->view('templates/footer');
-				} else {
+
+					$this->load->view('templates/footer'); 
+				} else { 
+				$data['user'] =$userid=$this->session->userdata('id');
+				$userid=$this->session->userdata('id');
+
 					$data['resultmsgs'] = $this->search_model->getsearchmsgs();
 					$data['resultusers'] = $this->search_model->getsearchusers();
 					$data['resultsent'] = $this->search_model->getsearchsent();

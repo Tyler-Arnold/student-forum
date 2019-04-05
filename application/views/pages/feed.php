@@ -6,7 +6,7 @@
     	</div>
 
         <div class="message-interaction">
-            <button>Reply</button>
+            <a href="<?php echo base_url("feed/thread/".$message['id']);?>"><button>Reply</button></a>
             <button>Like</button>
         </div>
     </div>

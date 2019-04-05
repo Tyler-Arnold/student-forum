@@ -42,5 +42,39 @@ class Feed extends CI_Controller {
           redirect('user/login','refresh');
         }
 
-    }
+
+      }
+	  
+	  public function thread($messageid){
+		$userid=$this->session->userdata('id');
+		$data['messageid']=$messageid;
+		
+		$data['user'] = $userid;
+		$data['title']='Thread';
+		$data['mainmsg']= $this->feed_model->get_thread($messageid);
+		$data['replies']= $this->feed_model->get_thread_replies($messageid);
+		
+		$this->load->helper('form'); // form helper functions, used in the create view
+		$this->load->library('form_validation'); // load form validation library
+		$this->form_validation->set_rules('reply', 'Message', 'required');
+		
+		$this->load->view('templates/header',$data); 
+	
+		
+		
+		
+
+		if ($this->form_validation->run() === FALSE) { // form failed validation
+			$this->load->view('pages/thread',$data);
+			
+		} else { // form validated successfully
+			$this->load->view('pages/thread', $data); //load message box
+			$this->feed_model->reply($messageid);// call function in model to put validated data into database
+			redirect("feed/thread/$messageid",'refresh');
+		}
+		$this->load->view('templates/footer');
+		
+		
+	  }
+
 }

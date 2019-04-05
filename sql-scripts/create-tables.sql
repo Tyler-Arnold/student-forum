@@ -52,7 +52,10 @@ CREATE TABLE `forum_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
+=======
 
+>>>>>>> ff48ef5c0c91e7e01ec6c83f6beed4bb79e98934
 
 CREATE TABLE `forum_appointments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
