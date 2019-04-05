@@ -108,7 +108,7 @@ class Feed_model extends CI_Model {
 
 	public function get_thread_replies($messageid){
 
-		$query = $this->db->select("us.username,message_body,sender")
+		$query = $this->db->select("us.username,us.status,message_body,sender")
 		          ->from("forum_replies")
 				  ->join("forum_users as us","sender=us.id")
 				  ->where("message_id", $messageid)
