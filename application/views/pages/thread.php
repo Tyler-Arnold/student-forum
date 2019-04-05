@@ -14,7 +14,7 @@
     	</div>
 
         <div class="message-interaction">
-            <button>Like</button>
+            
         </div>
     </div>
 
@@ -26,7 +26,7 @@
     	</div>
 
         <div class="message-interaction">
-            <button>Like</button>
+            
         </div>
     </div>
 	<?php endforeach; ?>
