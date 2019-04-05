@@ -31,14 +31,29 @@ class Feed_model extends CI_Model {
 			'sender' => $this->session->userdata('id'), // current session user id
 			'message_body' => $this->input->post('message') // message from the form
 		);
+		
+		
 
 		$recipients = $this->input->post('recipient'); // recipients for the message
 		$recipients = explode(",", $recipients); // split the comma-delimited string into individual recipients
+		$this->db->select('*');
+		$this->db->from('forum_users');
+		foreach($recipients as $name){
+			$this->db->where('username',$name);
+		}
+		$query=$this->db->get();
+					
+		if($query->num_rows()<=0){
+		
+			return false;
+		} else {
+			$this->db->insert('forum_messages', $data); // add the message to the message array
+			$message_id = $this->db->insert_id(); // get the message id
 
-		$this->db->insert('forum_messages', $data); // add the message to the message array
-		$message_id = $this->db->insert_id(); // get the message id
+			return $this->add_message_recipients($message_id, $recipients);
+		}
 
-		return $this->add_message_recipients($message_id, $recipients);
+		
 	}
 	
 	private function translate($username){

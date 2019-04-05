@@ -1,5 +1,6 @@
 <div class="message-box">
 <?php echo validation_errors(); ?>
+<?php echo $error; ?>	
 <?php echo form_open(); ?>
     <label for="recipient">Recipient</label>
     <input type="input" name="recipient" /><br />
