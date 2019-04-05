@@ -50,6 +50,8 @@ class Feed extends CI_Controller {
 	  
 	  public function thread($messageid){
 		$userid=$this->session->userdata('id');
+		 if(isset($userid)){
+		
 		$data['messageid']=$messageid;
 		
 		$data['user'] = $userid;
@@ -76,6 +78,9 @@ class Feed extends CI_Controller {
 			redirect("feed/thread/$messageid",'refresh');
 		}
 		$this->load->view('templates/footer');
+		 } else{
+			redirect('user/login','refresh');
+		 }
 		
 		
 	  }
