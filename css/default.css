@@ -8,7 +8,16 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #aadeff;
+
+	display: grid;
 }
+
+/* .grid-container {
+	grid-template-areas:
+		'title title title'
+		'send-message send-message calendar'
+		'feed feed calendar';
+} */
 
 nav.main-nav ul {
 	list-style-type: none;
@@ -17,8 +26,6 @@ nav.main-nav ul {
 	overflow: hidden;
 	background-color: #333;
 }
-
-
 
 nav.main-nav ul li {float: left;}
 
@@ -40,6 +47,12 @@ ul.topnav li.right {float: right;}
   ul.topnav li.right,
   ul.topnav li {float: none;}
 }
+
+/* nav.topnav { grid-area: nav; }
+.title { grid-area: title; }
+.calendar { grid-area: calendar; }
+.message-box { grid-area: send-message; }
+.feed { grid-area: feed; } */
 
 table.greyGridTable {
   border: 2px solid #FFFFFF;
@@ -85,5 +98,5 @@ table.greyGridTable tfoot td {
 div.feed-message {
 	border: 1px solid black;
 	width: auto;
-	margin: 20px 20%;
+	margin: 20px 5%;
 }
