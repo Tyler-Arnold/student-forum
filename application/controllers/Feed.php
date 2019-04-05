@@ -8,7 +8,7 @@ class Feed extends CI_Controller {
     }
 
     /*
-        The main feed page. 
+        The main feed page.
     */
     public function index() {
 		$userid=$this->session->userdata('id');
@@ -33,7 +33,7 @@ class Feed extends CI_Controller {
             $this->load->view('pages/calendar', $data); //load calendar
 
             if ($this->form_validation->run() === FALSE) { // form failed validation
-              $this->load->view('pages/message-box', $data); //load message box
+                $this->load->view('pages/message-box', $data); //load message box
             } else { // form validated successfully
               
 				if($this->feed_model->send_message()){// call function in model to put validated data into database
@@ -42,6 +42,7 @@ class Feed extends CI_Controller {
 					$data['error']='User does not exist';
 				}
 				$this->load->view('pages/message-box', $data); //load message box
+
             }
 
             $this->load->view('pages/feed', $data); //load feed
@@ -52,31 +53,27 @@ class Feed extends CI_Controller {
 
 
       }
-	  
+
 	  public function thread($messageid){
 		$userid=$this->session->userdata('id');
 		 if(isset($userid)){
-		
+
 		$data['messageid']=$messageid;
-		
+
 		$data['user'] = $userid;
 		$data['title']='Thread';
 		$data['mainmsg']= $this->feed_model->get_thread($messageid);
 		$data['replies']= $this->feed_model->get_thread_replies($messageid);
-		
+
 		$this->load->helper('form'); // form helper functions, used in the create view
 		$this->load->library('form_validation'); // load form validation library
 		$this->form_validation->set_rules('reply', 'Message', 'required');
-		
-		$this->load->view('templates/header',$data); 
-	
-		
-		
-		
+
+		$this->load->view('templates/header',$data);
 
 		if ($this->form_validation->run() === FALSE) { // form failed validation
 			$this->load->view('pages/thread',$data);
-			
+
 		} else { // form validated successfully
 			$this->load->view('pages/thread', $data); //load message box
 			$this->feed_model->reply($messageid);// call function in model to put validated data into database
@@ -86,8 +83,8 @@ class Feed extends CI_Controller {
 		 } else{
 			redirect('user/login','refresh');
 		 }
-		
-		
+
+
 	  }
 
 }
