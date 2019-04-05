@@ -96,7 +96,7 @@ class Feed_model extends CI_Model {
 	}
 
 	public function get_thread($messageid){
-		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
+		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username, us.status")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")

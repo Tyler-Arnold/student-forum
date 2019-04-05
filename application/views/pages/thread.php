@@ -8,7 +8,7 @@
 
 	<div class="feed-message">
 		<h2>Original Message</h2>
-        <h3 class="sender"><a href="<?php echo base_url("profile/index/".$mainmsg['sender']); ?>"><?php echo $mainmsg['username']; ?></a></h3>
+        <h3 class="sender"><a href="<?php echo base_url("profile/index/".$mainmsg['sender']); ?>"><?php echo $mainmsg['username'].' - '.$mainmsg['status']; ?></a></h3>
     	<div class="message-body">
     		<p><?php echo $mainmsg['message_body']; ?></p>
     	</div>
