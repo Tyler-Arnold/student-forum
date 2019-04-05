@@ -12,6 +12,7 @@
 	<body>
 		<nav class="main-nav">
 			<ul>
+
                 <?php if($userid){?>
 				<li><a href="<?php echo base_url('feed/index');?>">Feed</a></li> <!--update base_url to different path, once page/view is replaced-->
 				<li><a href="#">Calendar</a></li>
@@ -21,6 +22,7 @@
 				<li><a href="<?php echo base_url('search/input');?>">Search</a></li>
                 
                 <li><a href="<?php echo base_url('user/logout');?>">Logout</a></li>
+
 
 				<li><p style="color:white;">Logged in as <?php echo $username;?></p></li>
                 

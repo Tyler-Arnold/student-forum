@@ -5,7 +5,9 @@ class Feed_model extends CI_Model {
 		$this->load->library('session'); 
 	}
 	// DO NOT LEAVE THE DEFAULT USER IN THE FINAL SUBMISSION OR I'LL GIVE YOU A ZERO
+
 	public function get_messages() {  // gets news out of database
+
 		// this query might break when there's more than one recipient per message
 		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
