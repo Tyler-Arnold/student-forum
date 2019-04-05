@@ -2,9 +2,14 @@
     font-family: "Arial", sans-serif;
 }
 
+.calendar table {
+    width: 300px;
+    table-layout: fixed;
+}
+
 /* Calendar table styling */
 .calendar table, th, td {
-  border: 1px solid black;
+  border-top: 1px solid #003459;
   border-collapse: collapse;
 }
 

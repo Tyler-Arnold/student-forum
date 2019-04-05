@@ -13,6 +13,11 @@ body {
 	display: grid;
 }
 
+.page-container {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
 /* .grid-container {
 	grid-template-areas:
 		'title title title'
@@ -107,8 +112,9 @@ div.feed-message h3 a:visited { color: #003459; }
 div.feed-message h3 a:hover { color: #007ea7; }
 div.feed-message h3 a:active { color: #00171f; }
 
-.calendar {
-	margin-left: 5%;
-	margin-bottom: 20px;
-}
+.calendar { margin-bottom: 20px; }
 .message-box { margin-left: 5%; }
+
+.profile-picture {
+	border-radius: 15px;
+}
