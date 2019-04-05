@@ -4,7 +4,9 @@ class Calendar_model extends CI_Model {
         $this->load->database();
 	}
     // PLEASE DO NOT LEAVE THE DEFAULT USER IN THIS FUNCTION
-	public function get_calendar($month, $user = 1) {  // by default, month is current month
+	public function get_calendar($date, $user = 1) {  // by default, month is current month
+		$month = date("m",strtotime($date));
+		$year = date("Y",strtotime($date));
         $days_in_month =  cal_days_in_month( CAL_GREGORIAN , $month , date('Y') );
         $days_in_prev_month = $this->get_days_in_previous_month($month);
 
@@ -88,14 +90,16 @@ class Calendar_model extends CI_Model {
 	}
 
 	public function set_appointment() {
-		$date = date("Y-m-d", strtotime($date));
-        $query = $this->db->select("sender, recipient, date_time, location, status")
-                    ->from("forum_appointments")
-                    ->where("DATE(date_time)", $date)
-                    ->where("recipient", $user)
-                    ->where("status", "accepted")
-                    ->get();
+		$this->load->helper('url');
 
-		return $query->result_array();
+		$data = array(
+			'sender' => $this->session->userdata('id'),
+			'recipient' => $this->input->post('recipient'),
+			'date_time' => $this->input->post('date')." ".$this->input->post('time'),
+			'location' => $this->input->post('location'),
+			'status' => "pending"
+		);
+
+		$this->db->insert('forum_appointments', $data);
 	}
 }
