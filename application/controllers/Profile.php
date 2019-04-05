@@ -48,12 +48,10 @@
             $user = $this->session->userdata('id'); // gets session user details
             $this->profile_model->set_bio($user); // sets bio upon submit
             $data['profile_picture'] = $this->input->post('profile_picture');
-            var_dump($data['profile_picture']);
 
             $config['upload_path']          = './images/';
 			$config['allowed_types']        = 'jpg|png';
 			$config['max_size']             = 2000;
-            var_dump($config);
 
             $this->load->library('upload', $config);
 

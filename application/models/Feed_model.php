@@ -10,7 +10,7 @@ class Feed_model extends CI_Model {
 	*/
 	public function get_messages() {  // gets messages out of database
 		// this query might break when there's more than one recipient per message
-		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
+		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username, us.status")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
