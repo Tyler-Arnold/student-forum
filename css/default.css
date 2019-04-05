@@ -5,9 +5,10 @@ html {
 
 body {
 	font-family: sans-serif;
+	color: #00171f;
 	margin: 0;
 	padding: 0;
-	background-color: #aadeff;
+	background-color: #e8e8e8;
 
 	display: grid;
 }
@@ -24,7 +25,7 @@ nav.main-nav ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333;
+	background-color: #00171f;
 }
 
 nav.main-nav ul li {float: left;}
@@ -37,15 +38,15 @@ nav.main-nav ul li a {
   text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
+nav.main-nav ul li a:hover:not(.active) {background-color: #00a8e8;}
 
-ul.topnav li a.active {background-color: #4CAF50;}
+nav.main-nav ul li a.active {background-color: #4CAF50;}
 
-ul.topnav li.right {float: right;}
+nav.main-nav ul li.right {float: right;}
 
 @media screen and (max-width: 600px) {
-  ul.topnav li.right,
-  ul.topnav li {float: none;}
+  nav.main-nav ul li.right,
+  nav.main-nav ul li {float: none;}
 }
 
 /* nav.topnav { grid-area: nav; }
@@ -96,7 +97,18 @@ table.greyGridTable tfoot td {
 }
 
 div.feed-message {
-	border: 1px solid black;
+	border-top: 1px solid #007ea7;
 	width: auto;
 	margin: 20px 5%;
 }
+
+div.feed-message h3 a:link { color: #00171f; }
+div.feed-message h3 a:visited { color: #003459; }
+div.feed-message h3 a:hover { color: #007ea7; }
+div.feed-message h3 a:active { color: #00171f; }
+
+.calendar {
+	margin-left: 5%;
+	margin-bottom: 20px;
+}
+.message-box { margin-left: 5%; }
