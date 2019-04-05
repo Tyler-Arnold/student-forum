@@ -17,7 +17,8 @@ class Feed extends CI_Controller {
             $data['user'] = $userid; // The current logged in user (They're the same on the feed)
             $data['current_user'] = $userid; // The owner of the current page (They're the same on the feed)
             $data['title'] = "Your Feed"; // Capitalize the first letter
-            $data['messages'] = $this->feed_model->get_messages();
+            $data['error']='';
+			$data['messages'] = $this->feed_model->get_messages();
             $date = date("Y-m"); //get current month and year, needed for calendar
             $data['date'] = $date; // Just a year and a month
             $data['calendar'] = $this->calendar_model->get_calendar($date, $userid);
@@ -34,9 +35,13 @@ class Feed extends CI_Controller {
             if ($this->form_validation->run() === FALSE) { // form failed validation
               $this->load->view('pages/message-box', $data); //load message box
             } else { // form validated successfully
-              $this->load->view('pages/message-box', $data); //load message box
-              $this->feed_model->send_message(); // call function in model to put validated data into database
-              redirect($this->uri->uri_string());
+              
+				if($this->feed_model->send_message()){// call function in model to put validated data into database
+					redirect($this->uri->uri_string());
+				} else{
+					$data['error']='User does not exist';
+				}
+				$this->load->view('pages/message-box', $data); //load message box
             }
 
             $this->load->view('pages/feed', $data); //load feed
