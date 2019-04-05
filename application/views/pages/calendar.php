@@ -1,6 +1,6 @@
 <div class="calendar">
     <table>
-        <tr><th colspan="7"><?php echo date('F'); ?></th></tr>
+        <tr><th colspan="7"><?php echo date('F', strtotime($date)); ?></th></tr>
         <tr>
             <th>Mon</th>
             <th>Tue</th>
