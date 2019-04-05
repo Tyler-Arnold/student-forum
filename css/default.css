@@ -12,12 +12,12 @@ body {
 	display: grid;
 }
 
-.grid-container {
+/* .grid-container {
 	grid-template-areas:
 		'title title title'
 		'send-message send-message calendar'
 		'feed feed calendar';
-}
+} */
 
 nav.main-nav ul {
 	list-style-type: none;
@@ -48,11 +48,11 @@ ul.topnav li.right {float: right;}
   ul.topnav li {float: none;}
 }
 
-nav.topnav { grid-area: nav; }
+/* nav.topnav { grid-area: nav; }
 .title { grid-area: title; }
 .calendar { grid-area: calendar; }
 .message-box { grid-area: send-message; }
-.feed { grid-area: feed; }
+.feed { grid-area: feed; } */
 
 table.greyGridTable {
   border: 2px solid #FFFFFF;
