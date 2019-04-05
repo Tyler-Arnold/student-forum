@@ -7,7 +7,7 @@
 	<div class="profile-body"></div>
 
     <?php if($userid == $current_user){ ?>
-    <img class="profile_picture" src="<?php echo base_url(); ?>images/<?php echo $profile_pic; ?>" height="350px" width="350px" /><br><br> 
+    <img class="profile_picture" src="<?php echo base_url(); ?>images/<?php echo $profile_pic; ?>" height="350px" width="350px" /><br><br>
 
     <B><p>Role:</p></B><?php echo $status; ?>
     <br><br>
@@ -29,7 +29,6 @@
 <p><?php echo $bio; ?></p>
 
     <form action="<?php echo base_url('calendar/user-calendar'); ?>">
-    <input type="submit" value="Book an appointment" />
 </form>
     <?php } ?>
     <br><br>
