@@ -18,15 +18,6 @@ CREATE TABLE `forum_messages` (
   KEY `sender` (`sender`,`recipient`)
 ) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `forum_profiles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `users_id` int(11) NOT NULL,
-  `profile_picture` varchar(50) NOT NULL,
-  `bio` varchar(1000) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `users_id` (`users_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 CREATE TABLE `forum_replies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message_id` int(11) NOT NULL,
@@ -47,10 +38,8 @@ CREATE TABLE `forum_users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `status` varchar(20) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
-  `last_name` varchar(20) NOT NULL,
   `profile_picture` varchar(100) NOT NULL,
   `bio` text NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
