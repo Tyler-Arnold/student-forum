@@ -37,7 +37,7 @@ class Feed extends CI_Controller {
             } else { // form validated successfully
 
 				if($this->feed_model->send_message()){// call function in model to put validated data into database
-					redirect($this->uri->uri_string());
+                    $data['error']='Message sent!';
 				} else{
 					$data['error']='User does not exist';
 				}
