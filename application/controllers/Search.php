@@ -9,6 +9,7 @@
 		
 		public function index(){
 			$data['title'] = "Search";
+			$data['user'] =$userid=$this->session->userdata('id');
 			
 			$this->load->view('templates/header',$data);
 			$this->load->view('search/input');
@@ -16,6 +17,7 @@
 		}
 	
 		public function input(){
+			$data['user'] =$userid=$this->session->userdata('id');
 			$userid=$this->session->userdata('id');
 			if(isset($userid)){
 				$data['title'] = "Search";
@@ -35,6 +37,8 @@
 					$this->load->view('search/input');
 					$this->load->view('templates/footer'); 
 				} else { 
+				$data['user'] =$userid=$this->session->userdata('id');
+				$userid=$this->session->userdata('id');
 					$data['resultmsgs'] = $this->search_model->getsearchmsgs();
 					$data['resultusers'] = $this->search_model->getsearchusers();
 					$data['resultsent'] = $this->search_model->getsearchsent();

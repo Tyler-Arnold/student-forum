@@ -40,7 +40,8 @@
 		<?php echo $errorusers; ?>
 		<?php foreach ($resultusers as $resultuser): ?>
 			<div class="feed-message">
-				<h3 class="sender"><?php echo $resultuser['username']; ?></h3>
+				
+				<h3 class="sender"><a href="<?php echo base_url("profile/index/".$resultuser['id']); ?>"><?php echo $resultuser['username']; ?></a></h3>
 			</div>
 		<?php endforeach; ?>
 		

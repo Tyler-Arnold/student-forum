@@ -7,7 +7,7 @@ class Feed_model extends CI_Model {
 	// DO NOT LEAVE THE DEFAULT USER IN THE FINAL SUBMISSION OR I'LL GIVE YOU A ZERO
 	public function get_messages() {  // gets news out of database
 		// this query might break when there's more than one recipient per message
-		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
+		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
@@ -48,4 +48,43 @@ class Feed_model extends CI_Model {
 
 		return true;
 	}
+	
+	public function reply($messageid){
+		$data = array(
+			'sender' => $this->session->userdata('id'),
+			'message_id' => $messageid,
+			'message_body' => $this->input->post('reply')
+		);
+		
+		$this->db->insert('forum_replies',$data);
+	
+	
+	}
+	
+	public function get_thread($messageid){
+		$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
+		          ->from("forum_messages as me")
+				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
+				  ->join("forum_users as us", "me.sender=us.id")
+				  ->where("me.id", $messageid)
+				  ->get();
+
+        return $query->row_array();
+	
+	}
+	
+	public function get_thread_replies($messageid){
+		
+		$query = $this->db->select("us.username,message_body,sender")
+		          ->from("forum_replies")
+				  ->join("forum_users as us","sender=us.id")
+				  ->where("message_id", $messageid)
+				  ->order_by('forum_replies.id', 'DESC')
+				  ->get();
+
+        return $query->result_array();
+	
+	}
+	
+	
 }

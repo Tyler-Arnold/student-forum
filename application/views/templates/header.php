@@ -18,7 +18,7 @@
                 
 				<li><a href="<?php echo base_url("profile/index/$user");?>">Profile</a></li>
                 
-				<li><a href="#">Search</a></li>
+				<li><a href="<?php echo base_url('search/input');?>">Search</a></li>
                 
                 <li><a href="<?php echo base_url('user/logout');?>">Logout</a></li>
 
