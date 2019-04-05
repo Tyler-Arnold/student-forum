@@ -10,7 +10,7 @@
 			$searchinput = $this->input->post('entersearch');
 			$userid=$this->session->userdata('id');
 			
-			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
+			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
@@ -27,7 +27,7 @@
 			$searchinput = $this->input->post('entersearch');
 			$userid=$this->session->userdata('id');
 			
-			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.id, us.username")
+			$query = $this->db->select("me.id, me.sender, me.message_body, link.message_id, link.user_id, us.username")
 		          ->from("forum_messages as me")
 				  ->join("forum_user_messages_link as link", "me.id=link.message_id")
 				  ->join("forum_users as us", "me.sender=us.id")
