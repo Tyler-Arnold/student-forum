@@ -38,7 +38,7 @@ class Feed extends CI_Controller {
 
 				if($this->feed_model->send_message()){// call function in model to put validated data into database
                     $data['error']='Message sent!';
-				} else{
+				} else {
 					$data['error']='User does not exist';
 				}
 				$this->load->view('pages/message-box', $data); //load message box

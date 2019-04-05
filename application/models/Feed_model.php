@@ -36,10 +36,11 @@ class Feed_model extends CI_Model {
 
 		$recipients = $this->input->post('recipient'); // recipients for the message
 		$recipients = explode(",", $recipients); // split the comma-delimited string into individual recipients
+
 		$this->db->select('*');
 		$this->db->from('forum_users');
 		foreach($recipients as $name){
-			$this->db->where('username',$name);
+			$this->db->or_where('username',$name);
 		}
 		$query=$this->db->get();
 
@@ -72,14 +73,15 @@ class Feed_model extends CI_Model {
 	*/
 	private function add_message_recipients($message_id, $recipients) {
 		foreach($recipients as $recipient) {
-			$recipient=$this->translate($recipient);
-			var_dump($recipient);
-			$data = array (
-				'user_id' => $recipient['id'],
-				'message_id' => $message_id
-			);
+			$recipient=$this->translate(trim($recipient));
+			if(!empty($recipient['id'])){
+				$data = array (
+					'user_id' => $recipient['id'],
+					'message_id' => $message_id
+				);
 
-			$this->db->insert('forum_user_messages_link', $data);
+				$this->db->insert('forum_user_messages_link', $data);
+			}
 		}
 
 		return true;
